@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PasswordStrengthService } from './password-strength.service';
+import { PasswordStrengthLevel } from './password-strength-level.enum';
 
 @Component({
   selector: 'app-password-strength',
@@ -8,7 +9,7 @@ import { PasswordStrengthService } from './password-strength.service';
 })
 export class PasswordStrengthComponent {
   password: string = '';
-  passwordStrength: number = 0;
+  passwordStrength: PasswordStrengthLevel = PasswordStrengthLevel.Empty;
 
   constructor(private passwordStrengthService: PasswordStrengthService) {}
 
