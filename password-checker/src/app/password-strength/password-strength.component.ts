@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PasswordStrengthService } from './password-strength.service';
-import { PasswordStrengthLevel } from './password-strength-level.enum';
+import { PasswordStrengthService } from './config/password-strength.service';
+import { PasswordStrengthLevel } from './config/password-strength-level.enum';
 
 @Component({
   selector: 'app-password-strength',
