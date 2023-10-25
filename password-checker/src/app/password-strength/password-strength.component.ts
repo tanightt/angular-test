@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PasswordStrengthService } from './password-strength.service';
 
 @Component({
   selector: 'app-password-strength',
@@ -9,27 +10,11 @@ export class PasswordStrengthComponent {
   password: string = '';
   passwordStrength: number = 0;
 
-  checkPasswordStrength() {
-    if (!this.password) {
-      this.passwordStrength = 0;
-    } else if (this.password.length < 8) {
-      this.passwordStrength = 4;
-    } else {
-      const hasLetters = /[A-Za-z]/.test(this.password);
-      const hasDigits = /\d/.test(this.password);
-      const hasSymbols = /[!@#$%^&*]/.test(this.password);
+  constructor(private passwordStrengthService: PasswordStrengthService) {}
 
-      if (hasLetters && hasDigits && hasSymbols) {
-        this.passwordStrength = 3;
-      } else if (
-        (hasLetters && hasDigits) ||
-        (hasLetters && hasSymbols) ||
-        (hasDigits && hasSymbols)
-      ) {
-        this.passwordStrength = 2;
-      } else {
-        this.passwordStrength = 1;
-      }
-    }
+  checkPasswordStrength() {
+    this.passwordStrength = this.passwordStrengthService.checkPasswordStrength(
+      this.password
+    );
   }
 }
